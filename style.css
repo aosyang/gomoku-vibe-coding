@@ -601,4 +601,36 @@ button.waiting {
 
 button.waiting:hover {
     background-color: #90A4AE;
+}
+
+/* GitHub链接样式 */
+.github-footer {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.github-footer a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+.github-footer a:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.github-icon {
+    margin-right: 8px;
 } 

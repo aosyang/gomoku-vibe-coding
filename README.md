@@ -1,8 +1,9 @@
 # P2P五子棋游戏
 
 这是一个基于WebRTC和STUN服务器的P2P五子棋对战游戏。玩家可以无需中央服务器直接连接对战。
+- **访问网页版游戏**：[https://aosyang.github.io/gomoku-vibe-coding/](https://aosyang.github.io/gomoku-vibe-coding/)
 
-> 本项目是Cursor AI的Vibe Coding项目。
+> 本项目使用Cursor AI以Vibe Coding方式完成，人工编码成分较少。
 
 ## 功能特点
 
