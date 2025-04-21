@@ -1,0 +1,604 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.setup-panel {
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.user-setup {
+    margin-bottom: 30px;
+}
+
+.connection-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.option-card {
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.option-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.create-card {
+    border-left: 4px solid #4CAF50;
+}
+
+.join-card {
+    border-left: 4px solid #2196F3;
+}
+
+.option-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.join-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+#username {
+    max-width: 300px;
+    margin: 5px auto;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.status-message {
+    color: #555;
+    margin: 20px 0;
+    min-height: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.connection-info {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.id-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.id-display {
+    display: block;
+    padding: 8px 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    color: #333;
+    font-family: 'Consolas', 'Courier New', 'Microsoft YaHei Mono', monospace;
+    font-size: 14px;
+    flex-grow: 1;
+    word-break: break-all;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+}
+
+#copy-id {
+    width: auto;
+    padding: 8px 10px;
+    margin: 0;
+}
+
+.copy-icon {
+    font-style: normal;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 游戏部分 */
+.game-container {
+    margin-top: 30px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.player-info {
+    display: flex;
+    gap: 20px;
+}
+
+#local-player, #remote-player {
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#local-player {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 3px solid #4CAF50;
+}
+
+#remote-player {
+    background-color: rgba(33, 150, 243, 0.1);
+    border-left: 3px solid #2196F3;
+}
+
+#turn-indicator {
+    font-weight: bold;
+    color: #333;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.board-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.board {
+    background-color: #D6A355;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    position: relative;
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 1;
+}
+
+.cell:hover::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.black-piece {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.white-piece {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.preview-piece {
+    opacity: 0.4;
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+
+.win-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 5px;
+    z-index: 10;
+    pointer-events: none;
+    padding-bottom: 30px;
+    transition: opacity 0.5s;
+}
+
+.win-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    transition: transform 0.5s ease-out;
+    max-width: 90%;
+}
+
+.win-position-top {
+    justify-content: flex-start !important;
+    padding-top: 30px;
+    padding-bottom: 0;
+}
+
+.win-position-middle {
+    justify-content: center !important;
+}
+
+.win-position-bottom {
+    justify-content: flex-end !important;
+}
+
+.win-position-left .win-message-container {
+    align-self: flex-start;
+    margin-left: 20px;
+}
+
+.win-position-right .win-message-container {
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+.win-message {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 12px 24px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+}
+
+.win-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+#new-game-btn {
+    background-color: #4CAF50;
+    padding: 8px 15px;
+    max-width: none;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.secondary-btn {
+    background-color: #607D8B;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.secondary-btn:hover {
+    background-color: #455A64;
+}
+
+/* 游戏部分 */
+.winning-line {
+    position: relative;
+    z-index: 15;
+}
+
+.winning-line .black-piece,
+.winning-line .white-piece {
+    animation: pulse 1s infinite alternate;
+    box-shadow: 0 0 10px gold, 0 0 20px gold;
+    z-index: 15;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .connection-options {
+        flex-direction: column;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .win-message {
+        font-size: 22px;
+    }
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.controls button {
+    max-width: 200px;
+}
+
+#leave-btn {
+    background-color: #f44336;
+}
+
+#leave-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* 当棋盘可点击时的样式 */
+.clickable-board {
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+}
+
+.clickable-board:hover {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+}
+
+/* 棋盘点击提示 - 基础样式 */
+.board-click-hint {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    z-index: 20;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.3s;
+    text-align: center;
+    width: auto;
+    max-width: 90%;
+    animation: hint-pulse 2s infinite alternate;
+}
+
+.board-click-hint span {
+    font-weight: bold;
+    color: #FFD700; /* 金色 */
+}
+
+@keyframes hint-pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
+/* 不同位置的提示样式 */
+.board-click-hint.hint-top {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.board-click-hint.hint-bottom {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.board-click-hint.hint-left {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.board-click-hint.hint-right {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+/* 四角位置 */
+.board-click-hint.hint-top.hint-left {
+    top: 10px;
+    left: 10px;
+    transform: none;
+    border-radius: 5px 15px 15px 5px;
+    padding-left: 15px;
+}
+
+.board-click-hint.hint-top.hint-right {
+    top: 10px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    border-radius: 15px 5px 5px 15px;
+    padding-right: 15px;
+}
+
+.board-click-hint.hint-bottom.hint-left {
+    bottom: 10px;
+    left: 10px;
+    top: auto;
+    transform: none;
+    border-radius: 5px 15px 15px 5px;
+    padding-left: 15px;
+}
+
+.board-click-hint.hint-bottom.hint-right {
+    bottom: 10px;
+    right: 10px;
+    top: auto;
+    left: auto;
+    transform: none;
+    border-radius: 15px 5px 5px 15px;
+    padding-right: 15px;
+}
+
+/* 删除恢复按钮样式 */
+.restore-overlay-btn {
+    display: none; /* 不再使用 */
+}
+
+/* 等待确认提示样式 */
+.waiting-confirmation {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fade-in 0.5s ease-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.waiting-confirmation p {
+    color: white;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.waiting-confirmation.hidden {
+    display: none;
+}
+
+/* 旋转加载动画 */
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 等待状态的按钮样式 */
+button.waiting {
+    background-color: #90A4AE; /* 更淡的灰色 */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+button.waiting:hover {
+    background-color: #90A4AE;
+} 

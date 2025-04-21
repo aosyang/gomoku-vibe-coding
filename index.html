@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P五子棋</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="setup-panel">
+            <h1>P2P五子棋</h1>
+            <div class="user-setup">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" placeholder="请输入您的用户名">
+            </div>
+            
+            <div class="connection-options">
+                <div class="option-card create-card">
+                    <h2>创建游戏</h2>
+                    <p>创建一个新游戏并等待对手加入</p>
+                    <button id="create-btn">创建游戏</button>
+                    <div class="connection-info hidden" id="connection-info">
+                        <p>您的连接ID：</p>
+                        <div class="id-container">
+                            <span id="connection-id" class="id-display"></span>
+                            <button id="copy-id" title="复制到剪贴板"><i class="copy-icon">📋</i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="option-card join-card">
+                    <h2>加入游戏</h2>
+                    <p>输入对方的连接ID加入已有游戏</p>
+                    <div class="join-controls">
+                        <input type="text" id="remote-id" placeholder="粘贴连接ID">
+                        <button id="join-btn">加入游戏</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="status-message" id="status-message"></div>
+        </div>
+        
+        <div class="game-container hidden" id="game-container">
+            <div class="game-info">
+                <div class="player-info">
+                    <div id="local-player">我: <span id="local-player-name"></span> <span id="local-player-piece"></span></div>
+                    <div id="remote-player">对手: <span id="remote-player-name"></span> <span id="remote-player-piece"></span></div>
+                </div>
+                <div id="turn-indicator">等待连接...</div>
+            </div>
+            <div class="board-container">
+                <div class="board" id="board"></div>
+                <div class="win-overlay hidden" id="win-overlay">
+                    <div class="win-message-container">
+                        <div class="win-message" id="win-message"></div>
+                        <div class="win-buttons">
+                            <button id="new-game-btn">再来一局</button>
+                            <button id="toggle-win-overlay-btn" class="secondary-btn">查看棋盘</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="restart-btn" disabled>重新开始</button>
+                <button id="leave-btn">退出游戏</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
